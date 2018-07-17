@@ -13,6 +13,8 @@ cache: bundler
   script: false
 
 env:
+  global:
+    - BEARS_ZIP_URL=https://codeload.github.com/coala/coala-bears/zip
 jobs:
   include:
     - stage: moban
@@ -31,11 +33,8 @@ before_install:
 # the `install` step will run `bundle install` by default.
 script:
   - .ci/build.sh
-  # https://github.com/coala/coala-bears/issues/1037
-  - >
-    if [[ "$TRAVIS_PULL_REQUEST" != "false" ]]; then
-      sed -i.bak '/bears = GitCommitBear/d' .coafile
-    fi
+  - curl -fsSL -o coala-bears.zip $BEARS_ZIP_URL/master
+  - pip install coala-bears.zip[alldeps] --pre -U
   - docker run -v=$(pwd):/app --workdir=/app coala/base coala --ci
 
 notifications:
