@@ -13,6 +13,7 @@ link_ignore_list =
 # clbin.com doesnt work in link_ignore_list
 # See https://github.com/coala/coala-bears/issues/2126
 link_ignore_regex = clbin.com
+use_spaces = True
 
 [commit]
 bears = GitCommitBear
@@ -42,6 +43,7 @@ bears = HTMLLintBear
 files = **.html
 htmllint_ignore = optional_tag, protocol, indentation,  concerns_separation, capitalization
 ignore = vendor/**, resources/vendors/**, _site/**
+use_spaces = True
 
 [yml]
 bears = YAMLLintBear
