@@ -28,8 +28,10 @@ jobs:
       python: 3.6
       cache: pip
       install:
+        - COALA_ZIP_URL=https://codeload.github.com/coala/coala/zip
         - BEARS_ZIP_URL=https://codeload.github.com/coala/coala-bears/zip
         - curl -fsSL -o coala-bears.zip $BEARS_ZIP_URL/master
+        - pip install coala.zip[alldeps] --pre -U
         - pip install coala-bears.zip[alldeps] --pre -U
       script: coala --ci
 
